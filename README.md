@@ -39,7 +39,6 @@ A lightweight Human Resource Management System (HRMS Lite) to manage employees a
 - **Frontend:** [https://frontend-cs4rigsfk-sourabh-jains-projects-a4fc2f6c.vercel.app/]
 - **Backend API:** [https://hrms-lite-onui.onrender.com/employees] 
 
-> Replace the above URLs with your actual deployed links
 
 ---
 
