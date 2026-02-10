@@ -41,9 +41,20 @@ def remove_employee(employee_id: str, db: Session = Depends(get_db)):
 
 @app.post("/attendance", response_model=schemas.AttendanceResponse)
 def mark_attendance(attendance: schemas.AttendanceCreate, db: Session = Depends(get_db)):
+    
     if not crud.get_employee_by_employee_id(db, attendance.employee_id):
         raise HTTPException(status_code=404, detail="Employee not found")
-    return crud.create_attendance(db, attendance)
+
+    result = crud.create_attendance(db, attendance)
+
+    if not result:
+        raise HTTPException(
+            status_code=400,
+            detail="Attendance already marked for this date"
+        )
+
+    return result
+
 
 @app.get("/attendance/{employee_id}", response_model=list[schemas.AttendanceResponse])
 def get_attendance(employee_id: str, db: Session = Depends(get_db)):
